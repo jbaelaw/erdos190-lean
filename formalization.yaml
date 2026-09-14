@@ -93,9 +93,18 @@ sources:
     author_endorsement: participated
     note: >-
       The paper whose qualitative statement this development formalizes.  The author of the
-      paper is the author of the formalization.  The first version (22 April 2026) gave the
-      first publicly available proof of the divergence; Fox and Hunter (arXiv:2606.02541,
-      1 June 2026) independently proved the stronger bound H(k) ≥ k^{(1−o(1)) k log k}.
+      paper is the author of the formalization.  Chronology, as documented in Section 1.2 of
+      the paper (v2): the first version was posted on 22 April 2026 (arXiv:2604.20588v1,
+      submission timestamp 2026-04-22 14:07:51 UTC); Fox and Hunter (arXiv:2606.02541, posted
+      1 June 2026) describe it in their Section 1.1 as "very recent independent work" that
+      "also resolves the problem", and prove the stronger bound H(k) ≥ k^{(1−o(1)) k log k}
+      by a different method; the abstract of a seminar talk by Hunter (Stanford Combinatorics
+      Seminar, 17 December 2025) announced "a quick resolution" of the problem but contains no
+      proof, and Hunter's 2025 paper (Israel J. Math. 267) states no bound on H(k).  Within
+      that record, the 22 April 2026 note is the earliest publicly available proof of
+      H(k)^{1/k}/k → ∞ known to the author; the erdosproblems.com commentary (last edited
+      2 June 2026) cites the note together with Fox–Hunter.  No claim is made beyond this
+      documented chronology.
 
   - title: "Erdős Problem #190 (erdosproblems.com)"
     authors: ["Thomas F. Bloom (site)"]
