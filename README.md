@@ -1,6 +1,7 @@
 # Erdős Problem #190 — Lean 4 formalization of the qualitative statement
 
 Author: Ji Ho Bae (JRTI). Companion to arXiv:2604.20588 (v2). License: Apache-2.0.
+Repository: https://github.com/jbaelaw/erdos190-lean (also shipped as arXiv ancillary files).
 
 **Statement proved** (`Erdos190.erdos190`, file `Erdos190/Divergence.lean`):
 
