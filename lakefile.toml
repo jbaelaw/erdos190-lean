@@ -19,4 +19,4 @@ rev = "v4.33.0"
 [[require]]
 name = "ProbMethodCombinatorics"
 git = "https://github.com/yidiq7/ProbMethodCombinatorics"
-rev = "main"
+rev = "10f2997bf965df06cfbb0129651a1af6c7367618"
