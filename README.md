@@ -30,6 +30,7 @@ there is a prime `p` with `(k-1)/2 < p ≤ k-1` such that every canonical `N` sa
 | `BCT.lean` | restricted Blankenship–Cummings–Taranchuk recurrence `W(r,k)-1 ≥ p (W(r-1,k)-1)` for primes `r ≤ p ≤ k` (block construction, residue argument in `ZMod p`) |
 | `Main.lean` | Bertrand's postulate (Mathlib), iteration of BCT from `r₀ = ⌊k/3⌋` colours to `p` colours, explicit bound |
 | `Divergence.lean` | elementary asymptotics: `(C k)^k < bound` for `k ≥ max(768, 2(4(C+1))^12)` |
+| `Eventually.lean` | `Filter.Eventually` form `erdos190_eventually`, and `erdos190_H : (C k)^k < H k` eventually, given existence of `H(k) = sInf {N | Canonical N k}` (matches the formal-conjectures statement) |
 
 The Local Lemma itself is imported from the Lean 4 / Mathlib project
 [yidiq7/ProbMethodCombinatorics](https://github.com/yidiq7/ProbMethodCombinatorics)
