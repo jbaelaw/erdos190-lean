@@ -37,6 +37,14 @@ The Local Lemma itself is imported from the Lean 4 / Mathlib project
 (`ProbMethodCombinatorics.lovasz_local_lemma_symmetric`, fully proved there).
 Bertrand's postulate is `Nat.exists_prime_lt_and_le_two_mul` from Mathlib.
 
+## Palomar submission layout
+
+`Challenge.lean` (imports Mathlib only) states the results of record in the namespace
+`Erdos190.Palomar` with deliberate `sorry` holes; `Solution.lean` proves them as bridges to the
+`Erdos190` library; `comparator.json` names the four compared theorems; `formalization.yaml`
+carries the structured metadata.  Build: `lake build` (targets `Erdos190`, `Challenge`,
+`Solution`).
+
 ## Verification
 
 ```

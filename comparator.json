@@ -1,0 +1,11 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Erdos190.Palomar.divergence",
+    "Erdos190.Palomar.divergence_eventually",
+    "Erdos190.Palomar.H_divergence",
+    "Erdos190.Palomar.explicit_bound"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

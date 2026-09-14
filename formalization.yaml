@@ -1,0 +1,207 @@
+# formalization.yaml — adopted from https://github.com/mathlib-initiative/formalization.yaml
+version: "v0.4"
+
+project:
+  name: "Erdős Problem 190: H(k)^{1/k}/k → ∞ — a Lean 4 formalization of the qualitative statement of arXiv:2604.20588"
+  description: >-
+    A Lean 4 formalization, against Mathlib, of the qualitative statement of J. H. Bae,
+    "A resolution of Erdős Problem #190: the canonical van der Waerden number satisfies
+    H(k)^{1/k}/k → ∞" (arXiv:2604.20588, v2), Corollary 1.2, via the elementary argument of
+    its Section 4.3.  Let H(k) be the least N such that every finite colouring of {1,…,N}
+    contains a monochromatic or a rainbow k-term arithmetic progression; Erdős and Graham
+    (1979) asked whether H(k)^{1/k}/k → ∞ (Problem 190 in Bloom's database).  The compared
+    theorems state that for every C there is K such that for all k ≥ K every N for which
+    [N] is canonical for k satisfies (Ck)^k < N — that is, H(k) > (Ck)^k for all large k, so
+    H(k)^{1/k}/k → ∞ — together with the Filter.Eventually form, the same statement for
+    H(k) = sInf {N | canonical} under the hypothesis that a canonical N exists for every k
+    (the Erdős–Graham theorem, via Szemerédi's theorem, which is not formalized), and the
+    explicit bound behind the argument: for k ≥ 12 there is a prime p with
+    (k−1)/2 < p ≤ k−1 such that every canonical N exceeds
+    p^(p − ⌊k/3⌋)·(⌊k/3⌋^(k−1)/(16k²)).  The proof composes the Erdős–Lovász lower bound
+    W(r,k) − 1 ≥ r^(k−1)/(16k²) for van der Waerden numbers (obtained from the symmetric
+    Lovász local lemma, applied with a number of colours r₀ = ⌊k/3⌋ growing with k), the
+    restricted Blankenship–Cummings–Taranchuk recurrence W(r,k) − 1 ≥ p·(W(r−1,k) − 1) for
+    primes r ≤ p ≤ k, Bertrand's postulate, and elementary asymptotics.  The paper's main
+    theorem, the explicit rate H(k)^{1/k}/k ≥ (1/e − ε(k))·k/log k obtained with the
+    Baker–Harman–Pintz prime-gap theorem, is not formalized (that theorem is not available in
+    Mathlib); the formalized argument gives the weaker rate k^{1/6−o(1)}, which suffices for
+    the qualitative statement.  The compared theorems depend only on propext,
+    Classical.choice and Quot.sound.
+  authors:
+    - "Ji Ho Bae"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Ji Ho Bae"
+
+classification:
+  arxiv: [math.CO, math.NT]
+  msc2020: ["05D10", "11B25", "05C65"]
+
+status:
+  scope: >-
+    COMPLETE for the qualitative statement.  All four compared theorems are fully proved.  The
+    only sorries in the repository are the four deliberate holes in Challenge.lean (the
+    Comparator convention); Solution.lean and the Erdos190 development library are sorry-free,
+    and every compared declaration depends on exactly propext, Classical.choice and
+    Quot.sound.  Not formalized: the existence of H(k) (Erdős–Graham, via Szemerédi's theorem)
+    and the paper's explicit rate with the constant 1/e (Baker–Harman–Pintz).
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "Erdos190.Palomar.divergence"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "Erdos190.Palomar.divergence_eventually"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "Erdos190.Palomar.H_divergence"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+    - declaration: "Erdos190.Palomar.explicit_bound"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+
+fidelity:
+  divergences: >-
+    The formal statements are the qualitative statement of the paper (Corollary 1.2), phrased
+    for every canonical N so as not to assume the existence of H(k); given existence they are
+    literally H(k) > (Ck)^k for all large k.  The paper's Proposition 4.1 uses
+    r₀ = ⌊k/log k⌋ and gives the rate √k/log k; the formalization uses r₀ = ⌊k/3⌋, which
+    avoids real analysis in the asymptotic step and gives the rate k^{1/6−o(1)}.  The
+    Erdős–Lovász base is formalized with the cruder constant r^(k−1)/(16k²) (the paper has
+    r^(k−1)/(16k)), obtained with the dependency-degree bound k²N in the local lemma; only the
+    shape r^(k−1)/poly(k) matters.  [N] is modelled as Fin N (0-indexed), which does not affect
+    any statement.  The paper's main theorem (the explicit constant 1/e and ε(k), via the
+    Baker–Harman–Pintz prime-gap theorem) is not formalized.
+
+sources:
+  - title: "A resolution of Erdős Problem #190: the canonical van der Waerden number satisfies H(k)^{1/k}/k → ∞"
+    authors: ["Ji Ho Bae"]
+    type: "paper"
+    id: "https://arxiv.org/abs/2604.20588"
+    location: "Corollary 1.2 and Section 4.3 (Proposition 4.1); v2"
+    relationship: formalizes
+    author_endorsement: participated
+    note: >-
+      The paper whose qualitative statement this development formalizes.  The author of the
+      paper is the author of the formalization.  The first version (22 April 2026) gave the
+      first publicly available proof of the divergence; Fox and Hunter (arXiv:2606.02541,
+      1 June 2026) independently proved the stronger bound H(k) ≥ k^{(1−o(1)) k log k}.
+
+  - title: "Erdős Problem #190 (erdosproblems.com)"
+    authors: ["Thomas F. Bloom (site)"]
+    contributors:
+      - name: "Paul Erdős"
+        role: "problem-proposer"
+      - name: "Ronald L. Graham"
+        role: "problem-proposer"
+    type: "web discussion"
+    id: "https://www.erdosproblems.com/190"
+    relationship: background
+    note: "The canonical record of the problem; the site lists it as solved and cites the paper."
+
+  - title: "Old and new problems and results in combinatorial number theory: van der Waerden's theorem and related topics"
+    authors: ["Paul Erdős", "Ronald L. Graham"]
+    type: "paper"
+    id: "Enseign. Math. (2) 25 (1979), 325–344"
+    location: "p. 333"
+    relationship: background
+    note: "The 1979 origin of the question."
+
+  - title: "Three-color van der Waerden numbers grow super-exponentially"
+    authors: ["Jacob Fox", "Zach Hunter"]
+    type: "paper"
+    id: "https://arxiv.org/abs/2606.02541"
+    location: "Theorem 3; Sections 1.1 and 6"
+    relationship: background
+    note: >-
+      Independent later work obtaining the stronger bound H(k) ≥ k^{(1−o(1)) k log k} by a
+      different method; not formalized here.
+
+  - title: "A new lower bound for van der Waerden numbers"
+    authors: ["Thomas Blankenship", "Jay Cummings", "Vladislav Taranchuk"]
+    type: "paper"
+    id: "https://doi.org/10.1016/j.ejc.2017.10.007"
+    relationship: adapts
+    note: "The block construction behind the restricted recurrence, formalized in Erdos190/BCT.lean."
+
+  - title: "Problems and results on 3-chromatic hypergraphs and some related questions"
+    authors: ["Paul Erdős", "László Lovász"]
+    type: "paper"
+    id: "Colloq. Math. Soc. János Bolyai 10 (1975), 609–627"
+    relationship: adapts
+    note: "The local-lemma lower bound for van der Waerden numbers, formalized in Erdos190/EL.lean with a cruder constant."
+
+related_formalizations:
+  - id: "https://github.com/yidiq7/ProbMethodCombinatorics"
+    relationship: builds-on
+    note: >-
+      Lean dependency, pinned at commit 10f2997bf965df06cfbb0129651a1af6c7367618.  Its theorem
+      lovasz_local_lemma_symmetric (the symmetric Lovász local lemma, standard axioms only) is
+      used in Erdos190/EL.lean.  It is a dependency of the Solution only; the Challenge imports
+      Mathlib alone.
+
+automation:
+  methods:
+    - method: agent
+      role: "AI-assisted Lean development (Claude Code / Claude Fable 5.1) under the author's direction and review."
+
+review:
+  status: self-assessed
+  reviewers:
+    - "Ji Ho Bae"
+  notes: >-
+    The author reviewed the statements of record in Challenge.lean against the paper.  The
+    proofs are checked by Lean (and by #print axioms over the compared declarations).  No
+    external or independent human review of the Lean development has been performed.
+
+alignment:
+  namespace: "Erdos190.Palomar"
+  statements:
+    - source: "paper Section 1, definition of H(k) (canonical van der Waerden number)"
+      lean: "Erdos190.Palomar.Canonical, Erdos190.Palomar.H"
+      module: "Challenge"
+      status: proved
+    - source: "paper Corollary 1.2 (H(k)^{1/k}/k → ∞), elementary form"
+      lean: "Erdos190.Palomar.divergence"
+      module: "Solution"
+      status: proved
+    - source: "paper Corollary 1.2, Filter.Eventually form"
+      lean: "Erdos190.Palomar.divergence_eventually"
+      module: "Solution"
+      status: proved
+    - source: "paper Corollary 1.2 for H(k), assuming existence"
+      lean: "Erdos190.Palomar.H_divergence"
+      module: "Solution"
+      status: proved
+    - source: "paper Section 4.3, explicit bound with Bertrand's postulate and r₀ = ⌊k/3⌋"
+      lean: "Erdos190.Palomar.explicit_bound"
+      module: "Solution"
+      status: proved
+
+limitations:
+  - >-
+    No novelty is claimed for the formalization beyond the paper it formalizes; the mathematics
+    is the paper's.  Only the qualitative statement is formalized; the explicit constant 1/e of
+    the paper's main theorem is not.
+  - >-
+    The existence of H(k) for every k (Erdős–Graham, via Szemerédi's theorem) is not
+    formalized; the main statements are phrased for every canonical N, and H_divergence takes
+    existence as a hypothesis.
+  - >-
+    The compared theorems depend on propext, Classical.choice and Quot.sound, and, through the
+    Solution only, on the pinned ProbMethodCombinatorics development.
+
+acknowledgements: >-
+  The symmetric Lovász local lemma is imported from the ProbMethodCombinatorics project
+  (a Lean 4 formalization of Yufei Zhao's lecture notes "Probabilistic Methods in
+  Combinatorics").

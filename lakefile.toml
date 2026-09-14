@@ -1,9 +1,15 @@
 name = "erdos190"
 version = "0.1.0"
-defaultTargets = ["Erdos190"]
+defaultTargets = ["Erdos190", "Challenge", "Solution"]
 
 [[lean_lib]]
 name = "Erdos190"
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
 
 [[require]]
 name = "mathlib"
