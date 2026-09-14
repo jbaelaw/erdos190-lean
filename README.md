@@ -12,9 +12,12 @@ theorem erdos190 (C : ℕ) :
 ```
 
 where `Canonical N k` means: every colouring `Fin N → ℕ` (any number of colours) contains a
-monochromatic or a rainbow `k`-term arithmetic progression (`Erdos190/Defs.lean`).  Since
-`H(k)` is the least canonical `N`, this says `H(k) > (C k)^k` for all large `k`, for every `C`,
-i.e. `H(k)^{1/k}/k → ∞` — the question of Erdős and Graham (Problem #190).
+monochromatic or a rainbow `k`-term arithmetic progression (`Erdos190/Defs.lean`).  This is a
+statement about canonical `N` only.  Combined with the existence of a canonical `N` for every
+`k` (the Erdős–Graham theorem, not formalized here), it says `H(k) > (C k)^k` for all large
+`k`, for every `C`, i.e. `H(k)^{1/k}/k → ∞` — the question of Erdős and Graham (Problem #190);
+that conditional conclusion is `Erdos190.erdos190_H` / `Erdos190.Palomar.H_divergence`, with
+existence as an explicit hypothesis.
 
 Explicit intermediate result (`Erdos190.main_combinatorial`, `Erdos190/Main.lean`): for `k ≥ 12`
 there is a prime `p` with `(k-1)/2 < p ≤ k-1` such that every canonical `N` satisfies

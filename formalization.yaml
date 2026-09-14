@@ -11,11 +11,14 @@ project:
     contains a monochromatic or a rainbow k-term arithmetic progression; Erdős and Graham
     (1979) asked whether H(k)^{1/k}/k → ∞ (Problem 190 in Bloom's database).  The compared
     theorems state that for every C there is K such that for all k ≥ K every N for which
-    [N] is canonical for k satisfies (Ck)^k < N — that is, H(k) > (Ck)^k for all large k, so
-    H(k)^{1/k}/k → ∞ — together with the Filter.Eventually form, the same statement for
-    H(k) = sInf {N | canonical} under the hypothesis that a canonical N exists for every k
-    (the Erdős–Graham theorem, via Szemerédi's theorem, which is not formalized), and the
-    explicit bound behind the argument: for k ≥ 12 there is a prime p with
+    [N] is canonical for k satisfies (Ck)^k < N (divergence, and its Filter.Eventually form);
+    this is a statement about canonical N only and by itself says nothing about H(k) (it
+    holds vacuously for a k with no canonical N, where H(k) = sInf ∅ = 0).  Combined with
+    the existence of a canonical N for every k — the Erdős–Graham theorem, via Szemerédi's
+    theorem, which is not formalized — it gives H(k) > (Ck)^k for all large k, i.e.
+    H(k)^{1/k}/k → ∞; that conditional conclusion is stated as H_divergence, with the
+    existence as an explicit hypothesis on H(k) = sInf {N | canonical}.  The fourth compared
+    theorem is the explicit bound behind the argument: for k ≥ 12 there is a prime p with
     (k−1)/2 < p ≤ k−1 such that every canonical N exceeds
     p^(p − ⌊k/3⌋)·(⌊k/3⌋^(k−1)/(16k²)).  The proof composes the Erdős–Lovász lower bound
     W(r,k) − 1 ≥ r^(k−1)/(16k²) for van der Waerden numbers (obtained from the symmetric
@@ -73,8 +76,9 @@ status:
 fidelity:
   divergences: >-
     The formal statements are the qualitative statement of the paper (Corollary 1.2), phrased
-    for every canonical N so as not to assume the existence of H(k); given existence they are
-    literally H(k) > (Ck)^k for all large k.  The paper's Proposition 4.1 uses
+    for every canonical N so as not to assume the existence of H(k); divergence alone does not
+    entail a statement about H(k), and the conclusion H(k) > (Ck)^k for all large k is
+    formalized only under the explicit existence hypothesis (H_divergence).  The paper's Proposition 4.1 uses
     r₀ = ⌊k/log k⌋ and gives the rate √k/log k; the formalization uses r₀ = ⌊k/3⌋, which
     avoids real analysis in the asymptotic step and gives the rate k^{1/6−o(1)}.  The
     Erdős–Lovász base is formalized with the cruder constant r^(k−1)/(16k²) (the paper has
@@ -180,15 +184,15 @@ alignment:
       lean: "Erdos190.Palomar.Canonical, Erdos190.Palomar.H"
       module: "Challenge"
       status: proved
-    - source: "paper Corollary 1.2 (H(k)^{1/k}/k → ∞), elementary form"
+    - source: "paper Corollary 1.2, elementary form about canonical N (conclusion for H(k) needs existence, see H_divergence)"
       lean: "Erdos190.Palomar.divergence"
       module: "Solution"
       status: proved
-    - source: "paper Corollary 1.2, Filter.Eventually form"
+    - source: "paper Corollary 1.2, Filter.Eventually form about canonical N"
       lean: "Erdos190.Palomar.divergence_eventually"
       module: "Solution"
       status: proved
-    - source: "paper Corollary 1.2 for H(k), assuming existence"
+    - source: "paper Corollary 1.2 for H(k) itself, under the explicit existence hypothesis"
       lean: "Erdos190.Palomar.H_divergence"
       module: "Solution"
       status: proved
@@ -204,8 +208,9 @@ limitations:
     the paper's main theorem is not.
   - >-
     The existence of H(k) for every k (Erdős–Graham, via Szemerédi's theorem) is not
-    formalized; the main statements are phrased for every canonical N, and H_divergence takes
-    existence as a hypothesis.
+    formalized.  divergence and divergence_eventually are statements about canonical N only
+    and would hold vacuously if no canonical N existed; the conclusion about H(k) is
+    formalized only in H_divergence, which takes existence as a hypothesis.
   - >-
     The compared theorems depend on propext, Classical.choice and Quot.sound, and, through the
     Solution only, on the pinned ProbMethodCombinatorics development.

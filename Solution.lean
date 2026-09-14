@@ -70,6 +70,7 @@ theorem H_eq (k : ℕ) : H k = sInf {N | Erdos190.Canonical N k} := by
   ext N
   exact canonical_iff N k
 
+/-- Statement about canonical `N` only; see `Challenge.lean`. -/
 theorem divergence (C : ℕ) :
     ∃ K : ℕ, ∀ k, K ≤ k → ∀ N, Canonical N k → (C * k) ^ k < N := by
   obtain ⟨K, hK⟩ := Erdos190.erdos190 C

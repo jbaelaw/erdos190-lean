@@ -33,13 +33,16 @@ different colours).  Erdős and Graham (1979) asked whether `H(k)^{1/k}/k → �
   is the Erdős–Graham canonical van der Waerden theorem, via Szemerédi's theorem, and is not part
   of this development).
 * `Erdos190.Palomar.divergence`: for every `C` there is `K` such that for all `k ≥ K` every
-  canonical `N` exceeds `(Ck)^k`.  Since `H(k)` is the least canonical `N`, this says
-  `H(k) > (Ck)^k` for all large `k`, for every `C`, i.e. `H(k)^{1/k}/k → ∞`, which answers the
-  question affirmatively.  The statement is phrased for every canonical `N` so that it does not
-  depend on the existence of `H(k)`.
-* `Erdos190.Palomar.divergence_eventually`: the same in `Filter.Eventually` form.
-* `Erdos190.Palomar.H_divergence`: the same for `H(k)` itself, under the hypothesis that a
-  canonical `N` exists for every `k`.
+  canonical `N` exceeds `(Ck)^k`.  This is a statement about canonical `N` only; on its own it
+  says nothing about `H` (it holds vacuously for a `k` with no canonical `N`, and `H k = 0`
+  there).  Combined with the existence of a canonical `N` for every `k` — the Erdős–Graham
+  theorem, which is not formalized here — it gives `H(k) > (Ck)^k` for all large `k`, for
+  every `C`, i.e. `H(k)^{1/k}/k → ∞`, which answers the question affirmatively.  That
+  conditional conclusion is stated as `H_divergence` below.
+* `Erdos190.Palomar.divergence_eventually`: the same statement about canonical `N` in
+  `Filter.Eventually` form.
+* `Erdos190.Palomar.H_divergence`: the conclusion for `H(k)` itself — `(Ck)^k < H k` for all
+  large `k` — under the explicit hypothesis that a canonical `N` exists for every `k`.
 * `Erdos190.Palomar.explicit_bound`: the explicit form behind the theorem, for `k ≥ 12`: there is a
   prime `p` with `(k-1)/2 < p ≤ k-1` (Bertrand's postulate) such that every canonical `N` exceeds
   `p^(p - ⌊k/3⌋) · (⌊k/3⌋^(k-1) / (16 k²))`.
@@ -93,19 +96,24 @@ def Canonical (N k : ℕ) : Prop :=
 /-- The canonical van der Waerden number `H(k)`: the least canonical `N` (`0` if none). -/
 noncomputable def H (k : ℕ) : ℕ := sInf {N | Canonical N k}
 
-/-- **Erdős Problem 190.**  For every `C` there is `K` such that for all `k ≥ K`, every `N` for
-which `[N]` is canonical for `k` satisfies `(Ck)^k < N`; that is, `H(k)^{1/k}/k → ∞`. -/
+/-- **Erdős Problem 190 (statement about canonical `N`).**  For every `C` there is `K` such that
+for all `k ≥ K`, every `N` for which `[N]` is canonical for `k` satisfies `(Ck)^k < N`.
+By itself this does not mention `H`; together with the existence of a canonical `N` for every
+`k` (Erdős–Graham, not formalized; the hypothesis of `H_divergence`) it gives `H(k) > (Ck)^k`
+for all large `k`, i.e. `H(k)^{1/k}/k → ∞`. -/
 theorem divergence (C : ℕ) :
     ∃ K : ℕ, ∀ k, K ≤ k → ∀ N, Canonical N k → (C * k) ^ k < N := by
   sorry
 
-/-- `Filter.Eventually` form of `divergence`. -/
+/-- `Filter.Eventually` form of `divergence` (again a statement about canonical `N` only). -/
 theorem divergence_eventually (C : ℕ) :
     ∀ᶠ k in atTop, ∀ N, Canonical N k → (C * k) ^ k < N := by
   sorry
 
-/-- For `H(k)` itself, assuming a canonical `N` exists for every `k` (Erdős–Graham):
-`(Ck)^k < H(k)` for all large `k`. -/
+/-- The conclusion for `H(k)` itself: **assuming** a canonical `N` exists for every `k`
+(the Erdős–Graham theorem, taken as a hypothesis), `(Ck)^k < H(k)` for all large `k`, i.e.
+`H(k)^{1/k}/k → ∞`.  Without the hypothesis `H k = sInf ∅ = 0` and no such conclusion is
+available from `divergence`. -/
 theorem H_divergence (hH : ∀ k, {N | Canonical N k}.Nonempty) (C : ℕ) :
     ∀ᶠ k in atTop, (C * k) ^ k < H k := by
   sorry
