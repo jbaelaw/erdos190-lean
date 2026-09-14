@@ -2,7 +2,7 @@
 version: "v0.4"
 
 project:
-  name: "Erdős Problem 190: H(k)^{1/k}/k → ∞ — a Lean 4 formalization of the qualitative statement of arXiv:2604.20588"
+  name: "Erdős Problem 190: every canonical N exceeds (Ck)^k for large k, and H(k)^{1/k}/k → ∞ under the existence hypothesis — a Lean 4 formalization of the qualitative statement of arXiv:2604.20588"
   description: >-
     A Lean 4 formalization, against Mathlib, of the qualitative statement of J. H. Bae,
     "A resolution of Erdős Problem #190: the canonical van der Waerden number satisfies
@@ -20,7 +20,7 @@ project:
     existence as an explicit hypothesis on H(k) = sInf {N | canonical}.  The fourth compared
     theorem is the explicit bound behind the argument: for k ≥ 12 there is a prime p with
     (k−1)/2 < p ≤ k−1 such that every canonical N exceeds
-    p^(p − ⌊k/3⌋)·(⌊k/3⌋^(k−1)/(16k²)).  The proof composes the Erdős–Lovász lower bound
+    p^(p − ⌊k/3⌋)·⌊⌊k/3⌋^(k−1)/(16k²)⌋ (integer divisions, as in the Lean statement).  The proof composes the Erdős–Lovász lower bound
     W(r,k) − 1 ≥ r^(k−1)/(16k²) for van der Waerden numbers (obtained from the symmetric
     Lovász local lemma, applied with a number of colours r₀ = ⌊k/3⌋ growing with k), the
     restricted Blankenship–Cummings–Taranchuk recurrence W(r,k) − 1 ≥ p·(W(r−1,k) − 1) for
@@ -104,7 +104,8 @@ sources:
       "also resolves the problem", and prove the stronger bound H(k) ≥ k^{(1−o(1)) k log k}
       by a different method; the abstract of a seminar talk by Hunter (Stanford Combinatorics
       Seminar, 17 December 2025) announced "a quick resolution" of the problem but contains no
-      proof, and Hunter's 2025 paper (Israel J. Math. 267) states no bound on H(k).  Within
+      proof, and Hunter's 2025 paper (Israel J. Math. 267; arXiv:2301.06212, the version the author
+      checked) states no bound on H(k).  Within
       that record, the 22 April 2026 note is the earliest publicly available proof of
       H(k)^{1/k}/k → ∞ known to the author; the erdosproblems.com commentary (last edited
       2 June 2026) cites the note together with Fox–Hunter.  No claim is made beyond this

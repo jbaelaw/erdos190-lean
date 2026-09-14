@@ -21,7 +21,7 @@ existence as an explicit hypothesis.
 
 Explicit intermediate result (`Erdos190.main_combinatorial`, `Erdos190/Main.lean`): for `k ≥ 12`
 there is a prime `p` with `(k-1)/2 < p ≤ k-1` such that every canonical `N` satisfies
-`N > p^(p - ⌊k/3⌋) * (⌊k/3⌋^(k-1) / (16 k^2))`.
+`N > p^(p - ⌊k/3⌋) * ⌊⌊k/3⌋^(k-1) / (16 k^2)⌋` (integer divisions).
 
 ## Proof architecture (mirrors the paper, Bertrand version = Section 4.3)
 

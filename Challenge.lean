@@ -6,7 +6,7 @@ Authors: Ji Ho Bae
 import Mathlib
 
 /-!
-# Erdős Problem 190: the canonical van der Waerden number satisfies `H(k)^{1/k}/k → ∞`
+# Erdős Problem 190: every canonical `N` exceeds `(Ck)^k` for large `k` (hence `H(k)^{1/k}/k → ∞`, given that canonical `N` exist)
 
 This is the statement of record for the Palomar submission.  It imports Mathlib only, introduces
 the definitions of the problem, and states the result of
@@ -45,7 +45,8 @@ different colours).  Erdős and Graham (1979) asked whether `H(k)^{1/k}/k → �
   large `k` — under the explicit hypothesis that a canonical `N` exists for every `k`.
 * `Erdos190.Palomar.explicit_bound`: the explicit form behind the theorem, for `k ≥ 12`: there is a
   prime `p` with `(k-1)/2 < p ≤ k-1` (Bertrand's postulate) such that every canonical `N` exceeds
-  `p^(p - ⌊k/3⌋) · (⌊k/3⌋^(k-1) / (16 k²))`.
+  `p^(p - ⌊k/3⌋) · ⌊⌊k/3⌋^(k-1) / (16 k²)⌋` (all divisions are integer divisions, as in the Lean
+  statement).
 
 ## What the proof uses
 
@@ -112,14 +113,14 @@ theorem divergence_eventually (C : ℕ) :
 
 /-- The conclusion for `H(k)` itself: **assuming** a canonical `N` exists for every `k`
 (the Erdős–Graham theorem, taken as a hypothesis), `(Ck)^k < H(k)` for all large `k`, i.e.
-`H(k)^{1/k}/k → ∞`.  Without the hypothesis `H k = sInf ∅ = 0` and no such conclusion is
-available from `divergence`. -/
+`H(k)^{1/k}/k → ∞`.  Without the hypothesis, for a `k` with no canonical `N` one has
+`H k = sInf ∅ = 0`, and no conclusion about `H k` is available from `divergence`. -/
 theorem H_divergence (hH : ∀ k, {N | Canonical N k}.Nonempty) (C : ℕ) :
     ∀ᶠ k in atTop, (C * k) ^ k < H k := by
   sorry
 
 /-- The explicit bound: for `k ≥ 12` there is a prime `p` with `(k-1)/2 < p ≤ k-1` such that every
-canonical `N` exceeds `p^(p - ⌊k/3⌋) · (⌊k/3⌋^(k-1) / (16 k²))`. -/
+canonical `N` exceeds `p^(p - ⌊k/3⌋) · ⌊⌊k/3⌋^(k-1) / (16 k²)⌋` (integer divisions). -/
 theorem explicit_bound (k : ℕ) (hk : 12 ≤ k) :
     ∃ p : ℕ, p.Prime ∧ (k - 1) / 2 < p ∧ p ≤ k - 1 ∧
       ∀ N, Canonical N k → p ^ (p - k / 3) * ((k / 3) ^ (k - 1) / (16 * k ^ 2)) < N := by
