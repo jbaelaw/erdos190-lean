@@ -3,6 +3,10 @@
 Author: Ji Ho Bae (JRTI). Companion to arXiv:2604.20588 (v2). License: Apache-2.0.
 Chronology of the result (first version 22 April 2026; Fox–Hunter 1 June 2026; Hunter's seminar announcement 17 December 2025) is documented in Section 1.2 of the paper and in `formalization.yaml`.
 Repository: https://github.com/jbaelaw/erdos190-lean (also shipped as arXiv ancillary files).
+Registered in the [Palomar registry](https://palomar-registry.org/) of Lean-verified results as
+**PALOMAR-2026-09-15-000003** (version 1, commit `be43a3ea`; mechanical verification by Comparator and
+NanoDa, automated editorial review with no problems identified):
+https://palomar-registry.org/entry?id=PALOMAR-2026-09-15-000003&version=1
 
 **Statement proved** (`Erdos190.erdos190`, file `Erdos190/Divergence.lean`):
 

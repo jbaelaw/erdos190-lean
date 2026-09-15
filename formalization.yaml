@@ -170,13 +170,20 @@ automation:
       role: "AI-assisted Lean development (Claude Code / Claude Fable 5.1) under the author's direction and review."
 
 review:
-  status: self-assessed
+  status: agent-reviewed
   reviewers:
-    - "Ji Ho Bae"
+    - "Ji Ho Bae (self-assessment)"
+    - "Palomar registry automated editorial review (codex:gpt-5.6-sol)"
   notes: >-
     The author reviewed the statements of record in Challenge.lean against the paper.  The
-    proofs are checked by Lean (and by #print axioms over the compared declarations).  No
-    external or independent human review of the Lean development has been performed.
+    proofs are checked by Lean (and by #print axioms over the compared declarations).
+    Commit be43a3ead08a9d9af352cf296d284dd3468ca805 of this repository was mechanically
+    verified (Comparator and NanoDa kernel) and passed the automated editorial review of the
+    Palomar registry of Lean-verified results with no problems identified; it is registered
+    as PALOMAR-2026-09-15-000003, version 1
+    (https://palomar-registry.org/entry?id=PALOMAR-2026-09-15-000003&version=1), with an
+    immutable source-preservation fork at PalomarArchive/jbaelaw--erdos190-lean--ffa29cd1b3a4.
+    No independent human review of the Lean development has been performed.
 
 alignment:
   namespace: "Erdos190.Palomar"
